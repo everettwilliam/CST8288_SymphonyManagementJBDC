@@ -235,7 +235,7 @@ public class CompositionDAO extends CoreDAOImpl<CompositionModel, CompositionPK>
 			list = new ArrayList<CompositionPK>();
 			while (rs.next()) {
 				
-				list.add(new CompositionPK(rs.getString(1), rs.getString(1)));
+				list.add(new CompositionPK(rs.getString(1), rs.getString(2)));
 			}
 		} catch (SQLException sex) {
 				throw new DAOSysException(

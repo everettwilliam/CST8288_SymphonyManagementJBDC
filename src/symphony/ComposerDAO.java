@@ -348,9 +348,9 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 			+ "where composer = ?";
 
 	private static String SELECT_ALL_STM =
-			"SELECT DISTINCT name " 
+			"SELECT DISTINCT composer " 
 			+ "FROM " 
-			+ "Composer";
+			+ "Composition";
 	
 	private static String SELECT_STM = 
 			"SELECT "

@@ -97,6 +97,7 @@ public class MovementDAO extends CoreDAOImpl<MovementModel, MovementPK>	{
 			connection = connectToDB();
 			preparedStm = connection.prepareStatement(selectStm);
 			preparedStm.setString(1, compositionpk.getCompositionName());
+			preparedStm.setString(2, compositionpk.getComposerName());
 			rs = preparedStm.executeQuery();
 
 			list = new ArrayList<MovementPK>();
@@ -315,8 +316,11 @@ public class MovementDAO extends CoreDAOImpl<MovementModel, MovementPK>	{
 				"SELECT DISTINCT movementName, movementNumber " + "FROM " + "Movement";	
 		
 		private final static String SELECT_BY_COMPOSITION_STATEMENT =
-				"SELECT " + "movementNumber " + "FROM " + "movement"
-				+ " WHERE compositionNumber = ? ";
+				"SELECT movementName FROM movements"
+					+ "WHERE compositionName = ?" 
+					+ "AND composer = ?";
+				//"SELECT " + "movementNumber " + "FROM " + "movement"
+				//+ " WHERE compositionNumber = ? ";
 
 		private final static String SELECT_STM = "SELECT "
 				+ " movementNumbner, "

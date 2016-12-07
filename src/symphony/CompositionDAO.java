@@ -184,7 +184,6 @@ public class CompositionDAO extends CoreDAOImpl<CompositionModel, CompositionPK>
 
 			list = new ArrayList<CompositionPK>();
 			while (rs.next()) {
-				//TODO: Don't know how the fuck to do this...
 				list.add(new CompositionPK(rs.getString(1), rs.getString(2)));
 			}
 
@@ -396,7 +395,7 @@ public class CompositionDAO extends CoreDAOImpl<CompositionModel, CompositionPK>
 			+ " WHERE compositionname = ?";
 	
 	private final static String UPDATE_STATEMENT =
-			"UPDATE Composition SET compositionName = ?" 
+			"UPDATE Composition SET compositionName = ? " 
 			+ "composer = ? where compositionName = ?";
 	
 	private final static String SELECT_DISTINCT_STATEMENT =

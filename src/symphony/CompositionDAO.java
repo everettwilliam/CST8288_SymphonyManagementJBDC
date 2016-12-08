@@ -391,26 +391,26 @@ public class CompositionDAO extends CoreDAOImpl<CompositionModel, CompositionPK>
 	
 	/* ATTRIBUTES	-----------------------------------------------	*/
 	private final static String DELETE_STATEMENT =
-			"DELETE FROM " 
-			+ "Composition" 
+			"DELETE FROM" 
+			+ " Composition" 
 			+ " WHERE compositionname = ?";
 	
 	private final static String UPDATE_STATEMENT =
 			"UPDATE Composition SET compositionName = ?" 
-			+ "composer = ? where compositionName = ?";
+			+ " composer = ? where compositionName = ?";
 	
 	private final static String SELECT_DISTINCT_STATEMENT =
-			"SELECT DISTINCT composer, compositionName " 
-			+ "FROM " + "Composition";
+			"SELECT DISTINCT composer, compositionName" 
+			+ " FROM " + "Composition";
 	
 	private final static String SELECT_BY_COMPOSER_STATEMENT =
-			"SELECT compositionname FROM Composition"
+			"SELECT composer, compositionname FROM Composition"
 			+ " WHERE composer = ? ";
 	
 	private final static String SELECT_STATEMENT =
 			"SELECT composer, compositionName"
-			+ "FROM Composition" 
-			+ " WHERE compositionName = ? ";
+			+ " FROM Composition" 
+			+ " WHERE composer = ? AND compositionName = ? ";
 	
 	private final static String INSERT_STATEMENT =
 			"INSERT INTO Composition" 

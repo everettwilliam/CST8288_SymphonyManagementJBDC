@@ -82,7 +82,7 @@ public class Composition		{
 	 */
 	public static Composition findByPrimarykey(CompositionPK primarykey, Composer composer) throws FinderException, NoSuchEntityException {
 		if (isDebugging()) {
-			System.out.println("Composition.findByPrimarykey(" + primarykey + ", " + composer.getPrimaryKey() + ")");
+			System.out.println("Composition.findByPrimarykey(" + primarykey + ")");
 		}
 
 		CompositionModel model = null;
@@ -98,9 +98,7 @@ public class Composition		{
 			}
 		} catch (Exception ex) {
 			if (isDebugging()) {
-				System.out.println("Composition.findByPrimarykey(" + primarykey
-						  + ", " + composer.getPrimaryKey() + ")"
-						  + "\n\t" + ex.toString());
+				System.out.println("Composition.findByPrimarykey(" + primarykey  +  ")" + "\n\t" + ex.toString());
 				ex.printStackTrace(System.out);
 			}
 			throw new FinderException(ex.getMessage());

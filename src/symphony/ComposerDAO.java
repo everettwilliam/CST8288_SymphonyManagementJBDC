@@ -332,36 +332,36 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 	private final static boolean _debug = false;
 
 	private static String SELECT_DISTINCT_STM =
-			"SELECT DISTINCT composer FROM " 
-			+ "composition";
+			"SELECT DISTINCT composer FROM" 
+			+ " composition";
 	
 	private static String DELETE_STM =
-			"DELETE FROM " 
-			+ "composition"
+			"DELETE FROM" 
+			+ " composition"
 			+ " WHERE composer = ?";
 	
 	private static String UPDATE_STM =
-			"UPDATE " 
-			+ "composiion"
-			+ " SET "
-			+ "composer = ? "
-			+ "where composer = ?";
+			"UPDATE" 
+			+ " composiion"
+			+ " SET"
+			+ " composer = ?"
+			+ " where composer = ?";
 
 	private static String SELECT_ALL_STM =
-			"SELECT DISTINCT composer " 
-			+ "FROM " 
-			+ "Composition";
+			"SELECT DISTINCT composer" 
+			+ " FROM " 
+			+ " Composition";
 	
 	private static String SELECT_STM = 
-			"SELECT "
-			+ " composer, "
-			+ " compositionName, "
-			+ " FROM composition "
+			"SELECT"
+			+ " composer,"
+			+ " compositionName"
+			+ " FROM composition"
 			+ " WHERE composer = ?";
 	
 	private static String INSERT_STM =
-			"INSERT INTO "
-			+ "composition "
-			+ "values (?,?)";
+			"INSERT INTO"
+			+ " composition"
+			+ " values (?,?)";
 	
 }	/*	End of Class:	ComposerDAO.java				*/

@@ -5,11 +5,15 @@
 package symphony;
 
 import java.util.*;
+
 import java.sql.*;
 
 import sql.CoreDAOImpl;
+import sql.CreateException;
+import sql.DAOFactory;
 import sql.CoreDAO;
 import sql.DAOSysException;
+import sql.FinderException;
 import sql.NoSuchEntityException;
 
 /**
@@ -189,7 +193,45 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 
 		return list;
 	}
+	
+	public Collection<ComposerPK> dbSelectNextSet(int setSize, int offset) throws DAOSysException {
+		return dbSelectNextSet(ComposerDAO.SELECT_NEXT_DISTINCT_STM, setSize, offset);
+	}
 
+	public Collection<ComposerPK> dbSelectNextSet(String selectStm, int setSize, int offset) throws DAOSysException {
+		Connection connection = null;
+		PreparedStatement preparedStm = null;
+		ResultSet rs = null;
+		ArrayList<ComposerPK> list = null;
+
+		try	{
+			connection = connectToDB();
+			preparedStm = connection.prepareStatement(selectStm);
+			preparedStm.setInt(1, setSize);
+			preparedStm.setInt(2, offset);
+			rs = preparedStm.executeQuery();
+
+			list = new ArrayList<ComposerPK>();
+			while (rs.next())	{
+				list.add(new ComposerPK(rs.getString(1)));
+			}
+
+		}	catch (SQLException sex) {
+			throw new DAOSysException(
+						"dbSelectAll() SQL Exception\n"
+						+ sex.getMessage());
+		} finally {
+			try	{
+				releaseAll(rs, preparedStm, connection);
+			} catch (Exception ex) {
+				System.err.println("Error releasing resources <" + ex.toString());
+			}
+		}
+
+		return list;
+	}
+	
+	
 	/**
 	 * Called by update() to update state for an entity in the database.
 	 * 
@@ -246,7 +288,6 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 	public int dbRemove(ComposerPK primarykey) throws DAOSysException {
 		return dbRemove(primarykey, ComposerDAO.DELETE_STM);
 	}
-
 	
 	/**
 	 * Called by remove() to remove the state for a Customer entity from the database.
@@ -332,8 +373,17 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 	private final static boolean _debug = false;
 
 	private static String SELECT_DISTINCT_STM =
+<<<<<<< HEAD
 			"SELECT DISTINCT composer FROM" 
 			+ " composition";
+=======
+			"SELECT DISTINCT composer FROM " 
+			+ "composition";
+
+	private static String SELECT_NEXT_DISTINCT_STM =
+			"SELECT DISTINCT composer FROM " 
+			+ "composition limit ? offset ?";
+>>>>>>> origin/master
 	
 	private static String DELETE_STM =
 			"DELETE FROM" 
@@ -363,5 +413,7 @@ public class ComposerDAO extends CoreDAOImpl<ComposerModel, ComposerPK>	{
 			"INSERT INTO"
 			+ " composition"
 			+ " values (?,?)";
+	
+	private static String className = "symphony.Composer";
 	
 }	/*	End of Class:	ComposerDAO.java				*/
